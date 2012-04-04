@@ -1,0 +1,48 @@
+Badoiu
+Simona Andreea
+311CB
+Interploare Lagrange
+Am folosit functia din librariile pusee la dispozitie pe site. Am calculat primele doua erori separat, dupa care, intr-o bucla, am calculat erorile atat timp cat diferenta dintre eroarea de la pasul anterior si eroarea de la pasul actual a fost mai mica sau egala cu eps, sau pana cand eroarea de la pasul actual a fost mai mare decat eroarea de la pasul anterior. Cand eroarea de la pasul p este mai mare decat eroarea de la pasul p-1, polinomul nu converge, deci functia intoarce N=inf si Y=zeros(1,1001).
+
+Atunci cand eroarea de la pasul E(p-1)-E(p)<0 si E(p-1)>E(p), inseamna ca interpolantul converge si functia intoarce N=2^p si Y=valorile interpolantului obtinute la ultimul pas.
+
+Pentru determinarea pasului la care polinomul de interpolare converge, am procedat la fel si pentru celelalte 5 interpolari.
+
+Interpolare Newton
+Am luat algoritmul pentru aflarea coeficientilor tot din librariile de pe site. Dupa aflarea coeficientilor, am calculat valorile polinomului in fiecare punct, am calculat erorile si am procedat ca mai sus.
+
+Spline liniar
+La spline-ul liniar am calulat coeficientii dupa formulele din curs. Valoarea spline-ului intr-un anumit punct, am calculat-o dupa ce am gasit intervalul in care se gasea punctul, astfel am stiut ce coeficienti sa folosesc.
+
+Spline cubic natural
+Am aflat coeficientii pentru fiecare spline, folosind formulele dintr-un seminar. Dupa aflarea coeficinetilor am procedat la fel la ca la spline-ul liniar, pentru a determina valoarea carui spline trebuie sa o calculez pentru un anumit punct.
+
+Spline cubic tensionat
+La fel ca la spline cubic natural, doar ca se schimbau cateva valori in matricile pentru determinarea coeficientilor.
+
+Interpolare trigonometrica
+Am folosit formulele din curs pentru aflarea coeficientilor si am folosit aceeasi metoda pentru determinarea pasului la care polinomul converge, in functie de eps.
+
+Functia returneaza si Y=valorile interpolantului obtinute la ultimul pas, deoarece le folosesc la reprezentarea graficului.
+
+Din valorile pe care le-am dat pentru eps si din reprezentarea grafica, am observat ca spline-urile cubice si interpolarea trigonometrica converg cel mai bine. Am incercat pentru eps foarte mic si chiar pentru acestea, interpolantii converg.
+
+Reprezentarea grafica
+
+Pentru reprezentarea graficului, am apelat functiile eval_interpolator_c si eval_interpolator_d pentru valorile 1:6( adica pentru fiecare tip de interpolare). Am retinut fiecare Y returnat de functie la fiecare pas intr-o matrice cu 6 linii si 1001 coloane, dupa care, pentru fiecare linie din coloana, si pentru acelasi vector x=linspace(-pi,-pi,1001) am reprezentat graficul.
+Pentru a desena doua suporturi pentru grafice in acelasi timp am folosit subplot(rcn). De exemplu daca vreau sa reprezint un grafic, in al 2-lea sistem de axe(din cele doua pe care le-am generat), apelez subplot(1,2,2) dupa care apelez plot(x,y,[eventual culoarea cu care vreau sa fie desenat graficul, sau grosimea pe care vreau sa o aiba acesta]). intr-un plot am dat mai multe perechi (x,y) si nu am mai folosit hold on.
+
+Daca N=inf, am dat valorile lui Y=zeros(1,1001), deci imi deseneaza un grafic cu y=0, oricare ar fi x(un grafic care nu are nicio relevanta dar am vrut sa evit reprezentarea unor valori care depaseau cu mult valorile normale ale graficului nostru).
+
+Functia de test
+
+Apeleaza eval_interpolator_c si eval_interpolator_d pentru toate cele 6 tipuri de interpolari si retine valorile lui N in vectorii x, respectiv y. La sfarsit, am concatenat cei dou vectori si am afisat valorile obtinute. Prima linie afisata reprezinta valorile obtinute in eval_interpolator_c, iar a doua linie reprezinta valorile obtinute in eval_interpolator_d.
+
+Evaluarea discreta
+
+La evaluarea discreta, am incarcat datele din sunspot.dat, am generat 300 de valori intre 1701 si 2001, adica fiecare an, ai am procedat aproape la fel ca la evaluarea continua, doar ca aici pasii pentru care am calculat eroarea nu puteau merge mai departe de 8, pentru ca se cunosc valorile functiei doar in 300 de puncte.
+Am generat polinoamele pe baza valorilor pe care le cunosteam deja, dar pe baza a mai putine valori decat avem in total. Am vrut sa calculez eroarea pe baza punctelor care au ramas(adica sa nu mai calculez eroarea si in punctele pe baza carora s-a facut interpolarea), dar nu prea am stiut cum sa le iau si nu mai aveam nici timp asa ca erorile le-am calulat pe baza celor 300 de puncte, la fel cum am facut la evaluarea continua in cele 1001 puncte. 
+Diferenta dintre evaluarea continua si cea discreta este ca acum nu se mai pot genera puncte la intamplare in acel interval, deaorece noi cunoastem valorile functiei strict in cele 300 de puncte. Tocmai de aceea m-am folosit doar de valorile pe care le cunoasteam.
+Valoarea erorii am calculat-o la fel ca la evaluarea continua, doar ca aicii h=1 deci eroarea ramane E=s^0.5, unde s este suma din formula data in enuntul temei.
+
+La evaluarea discreta functia mea returneaza tot nk pentru care interpolantul converge. As fi vrut sa primeasca un an si sa returneze numarul de pete solare din anul respectiv, asta in cazul in care interpolantul converge, insa nu stiu daca puteam calcula aceasta valoare, avand in vedere ca la interpolarea cu functii spline anul trebuia sa se afle in intervalul pe baza caruia am facut interpolarea.

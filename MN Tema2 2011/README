@@ -1,0 +1,18 @@
+  In functia Iterative.m, pentru citirea datelor din fiserul text, am deschis fisierul pentru citire, am citit de pe prima linie numarul nodurilor, apoi, de
+pe fiecare linie, am citit indicele nodului, numarul de noduri cu care se invecineaza si fiecare nod cu care se invecineaza. Pentru
+fiecare nod j, adiacent cu nodul i, i~=j, am pus valoarea 1 in matricea a, pe pozitia a(i,j).  
+  In l(i) am numarat catre cate pagini trimite pagina i( nu intra in calcul duplicatele, sau link-urile caretrimit tot la pagina i).
+  Am pus in matricea k, pe pozitia k(i,i), unde i=1:n, valoarea din l(i). Dupa aceea am calculat inversa matricei k. Deoarece matricea
+k este o matrice diagonala, inversa matricei k se calculeaza foarte usor( k(i,i)=1/k(i,i)).
+  Am initializat r, care reprezinta page-rank-ul. am calculat page-rank-ul aplicand formula urmatore pana cand valorile din ri nu 
+difereau de cele din r prin valori mai mari decat eps.
+  
+  In functia Algebraic, citirea am facut-o la fel ca in functia Iterative. Am calculat cu algoritmul Gram-Schmidt Q si R pentru matricea A.
+A=(I-d*m), iar m=(k1*a)'. Apoi, am rezolvat n sisteme de n ecuatii cu n necunoscute, pentru a calcula inversa matricei A. Am descris in 
+comentarii ce fac acesti algoritmi si cam cum functioneaza.
+  Dupa aceea, am calculat page-rank-ul cu ajutorul formulei de pe Wikipedia.
+
+  In functia tema2, am citit valorile val1 si val2 din fiser. Am apelat functiile Iterative si Algebraic ale caror rezultate le-am
+scris in fisierul de iesire, asa cum era specificat in enuntul temei. Apoi am sortat vectorul PR obtinut cu ajutorul functiei Algebraic.
+Am afisat in fisierul de iesire, indicele din PR1( vectorul PR sortat, nodul pentru care s-a obtinut valoarea din PR(i), si rezultatul
+functiei F=u(PR(i)).
