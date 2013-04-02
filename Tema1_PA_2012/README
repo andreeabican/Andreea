@@ -1,0 +1,26 @@
+Badoiu Simona Andreea
+321CB
+
+Pentru a retine dictionarul, am folosit un map. La cheia de dimensiune l, am retinut toate cuvintele cu lungimea l.
+
+La partea intai, pentru a determina cel mai apropiat cuvant din dictionar de cuvantul pe care l-am primit noi de la tastatura am folosit algoritmul levenshtein, varianta care foloseste o matrice. Am folosit algoritmul de pe wikipedia si cam atat. Pentru un cuvant, caut intai daca exista cuvantul in dictionar, in cuvintele de lungimea sa, iar daca nu, aplic levenshtein pe toate cuvintele de aceeasi lungime, pe cele cu lungimea cu 1 mai mica si pe cele cu lungimea mai mare cu maxim 2.
+
+Pentru partea a doua, am gandit in felul urmator:
+	Am folosit o matrice pentru programarea dinamica;
+	La inceput am umplut prima linie a matricei astfel : cel mai apropiat cuvant(determinat cu Levenshtein) de cuvantul care contine caracterele de la 0 la coloana pe care completam
+		De exemplu pentru sore served, stergem spatiile si cand incepem sa completam in matrice, completam cu aproximarile din dictionar pentru s, so, sor, sore, sores etc.
+	Pentru urmatoarele linii din matrice:
+		- daca ne aflam pe linia i, determinam cea mai buna optiune de pe coloana i-1(cea mai buna optiune in functie de criteriile date in enunt: distanta, numar cuvinte, frecventa, lexicografic). Retinem aceasta cea mai buna optiune si pentru fiecare cuvant care contine caracterele de la numarul liniei pana la numarul coloanei pe care ne aflam, aflam cea mai buna aproximare si facem append intre cea mai buna optiune si cuvantul determinat(punem spatiu intre ele).(Se intelege din cod mai bine cred)
+	Cand am terminat de completat matricea pe si deasupra diagonalei principale, pe ultima coloana avem ultimele rezultate. Dintre aceste ultime rezultate, il alegem tot pe baza criteriilor din enunt, pe cel mai bun. => propozitia finala :).
+
+Complexitate:
+	La levenshtein: o matrice => lungime_cuvant1*lungime_cuvant2
+	Programarea dinamica pentru propozitie: cate un levenshtein pentru toate cuvintele care au aceeasi lungime, lungimea+2 sau lungimea-1 fata de fiecare cuvant de pe si de deasupra diagonalei principale.
+	=> Pentru o propozitie de n caractere => pentru n(n+1)/2 cuvinte, calculam distanta levenshtein => [n(n+1)/2]*[(lungime_cuvant1*lungimecuvant2)*de cate ori se face levensthein].
+	
+Am construit mai multe clase:
+	- o clasa in care retin toate proprietatile pe care le are un cuvant/propozitie in acel moment: valoare(cuvantul), distanta(fata de cuvintele din dictionar), frecventa si numarul de cuvinte;
+	- o alta clasa, Cuvant, in care retin valoarea si frecventa cuvantului;
+	- o clasa Prelucrari in care am definit toate functiile cu care prelucrez sirurile de caractere.
+	
+In Main doar creez map-ul care contine dictionarul si apelez functia de prelucrare a propozitiei.
