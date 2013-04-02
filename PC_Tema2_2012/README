@@ -1,0 +1,30 @@
+Badoiu Simona Andreea
+321 CB
+
+Pentru aceasta tema, am urmat pasii din enunt si se intelege din comentarii ce si unde am facut.
+
+Pentru evenimente de tip 1
+	- actualizez topologia
+	- La pachete de tip DatabaseRequest, am trimis costul in campul len al mesajului. intre cine era costul stiam din sender si din next_hop asa ca nu a mai fost nevoie sa trimit aceste date.
+	- Cand primesc mesajul de tip DatabaseRequest, trimit tot ce am in LSADatabase, ca in enunt, iar pentru a trimite mesaje de tip 1, in payload am retinu un vector cu vecini si costuri(pe pozitiile pare am vecinii iar pe pozitiile impare am costul de la nodul care a creat mesajul pana la vecinul de pe pozitia precedenta)
+	- cand primesc mesaje de tip 3 (Database Reply) - actualizez topologia si tabela de rutare, doar daca mesajul a fost adaugat in LSADatabase - am folosit un ok care imi spune daca s-a adaugat sau nu.
+	- cand primesc mesaje de tip1, tot la fel, actualizez LSADatabase si daca mesajul a fost adaugat, atunci actualizez si topologia si forward-ez mesajul.
+	*Pentru a adauga in LSADatabase am scris o functie in care verific si fac si modificarile. Aceasta intoarce 1 daca mesajul a fost adaugat in LSA si 0 daca nu.
+	
+	
+Evenimente de tip2
+	- actualizez topologia
+	- trimit mesaje de tip Database Request de la fiecare capat al link-ului catre fiecare celalalt capat al linkului si ce mai este in enunt... apoi tot ce se trimite este primit ca in descrierea de mai sus si trimis exact la fel, in fucntie de tipul pe care trebuie sa il aiba.
+	
+Eveniment de tip3
+	- actualizez topologia(adica sterg din topologie) si tot ce mai este in enunt.
+	- Pentru actualizarea tabelei de rutare am folosit algoritmul lui Floyd - este cel din curs. Am facut o functie care modifica tabela de rutare cand este apelata, pe baza matricelor care rezulta in urma algoritmului.
+
+Eveniment de tip 4:
+	- Am creat mesajul de tip 4 si l-am trimis la next_hop din tabela se rutare in caz ca exista. Pentru exemplul nostru "events.in" am impresia ca nu se actualizeaza inca toata tabela si topologia si nu stiu daca este din cauza ca am gresit ceva sau pur si simplu nu a avut inca timp sa se actualizeze, dar in principiu nu prea vad ce altceva as fi gresit...
+
+	- Cand primesc mesajul de tip 4, din coada, ii modific next_hop tot in functie de tabela de rutare si il trimit mai departe(asta daca nu a ajuns deja unde trebuia). *In campul len al mesajului am retinut destinatia si daca a ajuns la destiantie nu mai trimite mai departe pentru ca ar intra in ciclu infinit cred).
+	
+	Am actualizat tabela de rutare dupa ce am procesat tot ce era in coada si la caderea unui link.
+	
+	Am folosit coada din C++ pentru coada_new si coada_old.

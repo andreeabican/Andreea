@@ -1,0 +1,28 @@
+Badoiu Simona Andreea
+321 CB
+
+Programul meu afiseaza tot ce trebuie sa afiseze, si corect, cu expceptia cazului "reverse lookup". Am facut si pentru acest caz qname, in functia getHostByName, am compus mesajul si am trimis, dar nu trimite corect si nu am reusit sa imi dau seama de ce.
+
+Pentru aceasta tema, am folosit structurile din header.h.
+
+In functia getHostByName am compus tot mesajul pe care il trimitem si l-am returnat.
+Pentru prelucrarea raspunsului am tinut cont de faptul ca raspunsul este compus din: header, intrebarea pe care am trimis-o eu, numele domeniului...apoi, in functie de caz ANSWER SECTION, ADDITIONAL SECTION...
+
+Am citit din fisierul dns_servers.conf adresa la care trimit si am iesit dupa prima adresa, daca am primit un raspuns corect (y > 0 si rcode == 0).
+
+Cele mai multe detalii se inteleg din comentarii, deoarece nu am folosit cine stie ce algoritmi, ci sunt pur si simplu multe comenzi date la rand.
+
+Am folosit cateva functii pe care le-am declarat la inceput:
+	getHostByName - cum am spus si mai sus, intoarce tot ce trebuie sa trimitem cu sendto;
+	
+	tip si tipSimbol - intorc tipul(numeric)/ Simbolul pentru acel numar, in functie de ce avem nevoie;
+	
+	answerName - prelucreaza numele de domeniu din raspuns(trateaza inclusiv compresia) si returneaza cu cat trebuie sa avansam in buffer dupa ce am extras numele. In parametru nume se retine numele rezultat din prelucrari;
+	
+	afisareRdata - afiseaza rdata in fisierul de iesire
+	
+	afisareSection - afiseaza o sectiune in fisierul de iesire(answer, authority)
+	
+	Nu am pus timeout, deci daca nu se opreste nu este din cauza implementarii ci pentru ca s-a blocat in recvfrom dar nu prea se intampla asta.
+	
+	
