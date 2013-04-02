@@ -1,0 +1,27 @@
+Badoiu Simona Andreea 331CB
+
+Pentru aceasta tema am inceput de la scheeltul de laborator pentru laboratorul 5.
+
+Operatia de tip Map este efectuata de workerii de tip MapWorker. 
+MapWorker:
+	- PartialSolution pentru acest tip de workeri, primeste numele fisierului, pozitia de pe care incepe sa citeasca si pozitia pe care se va termina citirea;
+	- In ProcessPartialSolution, se recalculeaza pozitia de pe care se incepe citirea si pozitia pe care se termina citirea astfel incat sa nu incepem sau sa terminam in mijlocul unui cuvant si se adauga un HashMap(cuvant, numar aparitii) in ArrayListul de la cheia "NumeDocument" din "total"., unde total este un HashMap declarat in main si pe care il trimitem fiecarui Worker de tip Map.
+
+ReduceWorker, executa 2 operatii diferite, in functie de valoarea parametrului "tip" pe care o primeste in constructor. Daca tip are valoarea 1 se face Reduce de tip 1, iar daca tip are valoarea 2, se face reduce de tip 2.
+
+In ReduceWorker am creat o clasa ValueComparator care implementeaza comparator si suprascrie functia compare pentru 2 siruri de caractere pentru a putea sorta dupa valorile corespunzatoare cheilor de tip String(aceasta clasa ne ajuta la sortarea unui TreeMap dupa procentul corespunzator fiecarui cuvant)
+
+ReduceWorker de tip 1:
+	- Parcurge ArrayListul de HashMapuri pe care il primeste, calculeaza numarul total de cuvinte din fisier si pentru fiecare cuvant calculeaza numarul total de aparitii in fisier;
+	- Construieste un TreeMap cu procentul de aparitii al fiecarui cuvant si trimite catre prelucrare, incepand de la frecventa cea mai mare, primele N sau mai multe cuvinte(conform enuntului) printr-un PartialSolution, cu tipul 2.
+
+ReduceWorker de tip 2:
+	- determina daca fisierul pe care l-a primit in constructorul PartialSolution contine toate cuvintele cautate;
+	- Parcurge vectorul de cuvinte cautate si verifica daca fiecare cuvant se gaseste in HashMap-ul cu cele mai frecvente N cuvinte. Daca da, scrie in lhm, pentru cheia - nume fisier, un string care contine frecventele tuturor cuvintelor cautate. Daca fisierul nu contine toate cele NC cuvinte in vectorul de frecvente maxime, atunci pe pozitia corespunzatoare din lhm se va pune null;
+	- lhm - este un LinkedHashMap pe care il primeste ca parametru in constructor(este declarat in main);
+	- Am folosit LinkedHashMap pentru a mentine cheile in ordinea in care le-am introdus in main - ne ajuta la afisarea fisierelor in ordinea in care au fost trimise in fisierul de intrare.
+	
+In main:
+	- Se citesc datele din fisierul de intrare;
+	- Se construieste PartialSolution pentru fiecare worker de tip Map si Reduce si se apeleaza start pentru fiecare Worker;
+	- La final, aici se parcurge lhm si se scriu rezultatele in fisierul de iesire.
