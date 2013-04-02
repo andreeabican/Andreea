@@ -1,0 +1,69 @@
+Tema 2: Expresii Regulate
+
+O expresie regulată [http://www.wikipedia.org/Regular_expression] este un şablon care descrie un limbaj regulat, adică o mulţime de şiruri de caractere generată de o gramatică regulată. Se mai numesc si „regex” sau „regexp”.
+
+Componentele / operaţiile de bază într-un regex sunt:
+
+    String literal: “abc” - se potriveşte doar cu stringul “abc”
+
+    Sau boolean, notat cu pipe - “|”; expresia “abc|def” se potriveşte fie cu “abc”, fie cu “def”
+
+    Gruparea – se face prin intermediul parantezelor. De exemplu, “c(as|rem)a” se potriveşte cu “casa” şi “crema”
+
+    Repetarea de 0, 1 sau mai multe ori – se face prin intermediul asteriscului. De exemplu, “a*” se potriveşte cu “”, “a”, “aa”, “aaaaaa”. Repetarea are cea mai mare prioritate, astfel încât “ab*” se potriveşte cu “a”, “ab”, “abb”, “abbb”, etc.
+
+Câteva scurtături folosite:
+
+    Caracterul “.” (punct), ca şi string literal, se potriveşte cu orice caracter.
+
+    Expresiile între paranteze pătrate se potrivesc cu unul dintre caracterele incluse. De exemplu, “[abcx]” se potriveşte cu “a”, “b”, “c” si “x”. În plus, sunt suportate 2 operaţii suplimentare:
+
+        Excluziunea, notată cu “^” la început. Astfel, “[^abcx]” se potriveşte cu orice string de lungime 1, ÎN AFARĂ de “a”, “b”, “c” şi “x”.
+
+        Intervale, notate cu minus. “[a-z]” se potriveşte cu orice literă mică a alfabetului, iar expresia “[0-9A-F]” se potriveşte cu cifrele hexazecimale (dar cu litere mari).
+
+Tema voastră este să implementaţi un program care, dându-se o expresie regulată, să producă o funcţie care aplicată unui şir să întoarcă fie “NoMatch”, fie “Match lista”. Lista este o listă de Maybe String.
+
+Lista întoarsă la Match este o listă de stringuri, care corespund (în ordinea apariţiei în regex-ul iniţial) potrivirilor părţilor dintre paranteze.
+
+Exemplu de folosire: presupunând că funcţia voastră se numeşte compileRegex, atunci:
+
+let fr = compileRegex(“a(b|c(z)*)*er”) in
+
+map fr [“ceva”, “aer”, “acer”, “aczer”]
+
+va întoarce
+
+[NoMatch, Match [Nothing, Nothing], Match [Just “c”, Nothing], Match [Just “cz”, Just “z”]]
+
+Explicaţii: “ceva” nu se potriveşte; “aer” se potriveşte, cu parantezele inexistente, “acer” se potriveşte cu “c” în prima paranteză şi vid pentru a doua, şi “aczer” cu “cz” ca rezultat al primei paranteze, în care e inclus “z”-ul de la a doua.
+
+Precizări:
+
+    Se face doar match pe TOT stringul primit ca argument
+
+    Orice caracter dintre paranteze drepte, cu excepţia caret-ului la început sau minusului îşi pierde semnificaţia specială. Astfel, “[a.*]” se potriveşte cu “a”, “.” sau “*”. Caret altundeva decât la început e doar caret, deci “[a^]” inseamnă “a” sau “^”.
+
+    Nu se cere implementarea cazurilor speciale: backslash escape, “]” ca element între paranteze drepte, minus ca element între paranteze drepte. Deci, deşi în general []a] înseamnă “caracterul a sau ]”, sau “[a-]” înseamnă “caracterul a sau minus”, nu se va testa aşa. Se va testa doar cu intervale complete (de genul “[a-z]”).
+
+    Implementarea trebuie sa fie a voastra, nu aveti voie sa folositi functii din biblioteci specializate pentru lucrul cu expresii regulate.
+
+Notare:
+
+    program care întoarce doar NoMatch: zero puncte
+
+    implementarea pentru Match care verifică corect potrivirea dar nu întoarce legările pentru paranteze (ci doar lista vidă): 100% din punctaj
+
+    implementarea pentru Match care întoarce şi legările pentru subexpresiile din paranteze: bonus 20%
+
+Resurse utile:
+
+http://en.wikipedia.org/wiki/Parser_combinator 
+
+http://www.cs.nott.ac.uk/~gmh/chapter8.ppt 
+
+http://www.haskell.org/ghc/docs/latest/html/libraries/base/Prelude.html 
+
+http://www.haskell.org/ghc/docs/latest/html/libraries/base/Data-List.html
+
+http://www.haskell.org/ghc/docs/latest/html/libraries/base/Data-Maybe.html

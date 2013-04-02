@@ -1,0 +1,8 @@
+Badoiu Simona Andreea
+321CB
+
+In aceasta tema am folosit module.
+Pentru a retine orarul am definit un template, cu mai multe sloturi si un multislot pentru intervalul orar, iar diferenta dintre orarul vechi si orarul nou o fac printr-un slod, care se numeste tip si are valoarea "nou" sau "vechi", in functie de tipul orarului.
+
+Am pus conditii pentru respectarea doleantelor profesorilor, suprapunerea orelor, grupelor, salilor...
+Functia de fitness, aduna valoarea 5 la scor, atunci cand se gaseste o greseala in orar. In functie de scor, retin orarul cu scorul cel mai mic, adica cele mai putine greseli.

@@ -1,0 +1,16 @@
+Badoiu Simona Andreea
+321CB
+
+Pentru Tema2, am folosit un nou tip de date RegEx in care am avut constructori pentru toate situatiile care se puteau intalni in expresia regulata, adica:
+	- Sim = caracter
+	- Sau - paranteza cu pipe
+	- Secv - o secventa de mai multe RegEx
+	- Rep - o secventa care se paote repeta
+	- Interv - un interval din paranteza patrata
+	- Exc - interval din paranteza patrata cu ^
+
+In urma parcurgerii expresiei regulate primite, am construit o lista formata cu elemente de tipul RegEx.
+
+Parcurgand aceasta lista si cu anumite conditii, am verificat daca expresia regulata se potriveste cu sirul primit.
+
+Am construit si alte functii, care iau ce e in paranteza, ce e dupa paranteza, ce e inainte de pipe sau dupa pipe.
