@@ -1,0 +1,17 @@
+Badoiu Simona Andreea 331CB
+
+Pentru implementarea temei, am scris clasa MyThread care implementeaza un Thread si am completat functiile din clasa Node.
+
+	Metoda run, a clasei MyThread, pune in matricea block toate elementele de care avem nevoie din datastore-ul nodului care a deschis threadul.
+Am ales aceasta implementare deoarece se deschid destul de putine threaduri, avand in vedere ca un bloc isi ia toate informatiile de la un nod printr-o singura cerere, respectiv printr-un singur thread.
+	
+	Pentru a asigura ca nu au loc mai mult de max_pending_requests in acelasi timp, la acelasi nod, am folosit un semafor, cu valoarea de  inceput egala cu max_pending_requests. De fiecare data cand ceream un element din datastore - apelam semafor.acquire(), iar la terminarea operatiei, apelam semafor.release()
+	
+	Functia compute_matrix_block face cea mai mare parte a programului:
+		- initial, blocurile din matricile A si B sunt initializate cu None pentru fiecare element
+		- se parcurg toate elementele din blocurile cerute si cand se intalneste un element == None
+				- se stabileste care este id-ul nodului la care trebuie sa cerem elementul(dar nu luam doar un element din bloc, ci toate elementele de care vom mai avea nevoie pe viitor pentru acest bloc)
+				- se stabileste care sunt limitele(linii, coloane) blocului de care avem nevoie de la nodul respectiv
+				- se apeleaza functia get_matrix_a_block sau get_matrix_b_block(in functie de matricea pentru care se face cererea), din nodul corespunzator
+				- se retin toate valorile intoarse in blocurile A, B din functia compute_matrix_block
+		- dupa ce A si B sunt complete, se apeleaza functia mult_matrices, si se intoarce rezultatul primit de la aceasta
