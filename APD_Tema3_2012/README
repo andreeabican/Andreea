@@ -1,0 +1,46 @@
+Badoiu Simona Andreea 331CB
+
+VARIANTA SERIALA:
+Pentru aceasta tema, am facut mai intai varianta seriala si apoi am paralelizat. Pentru varianta seriala am implementat algoritmul din enunt si nu prea au aparut probleme, decat la afisarea matricei, deoarece la inceput afisam imaginea rotita.
+
+Pentru a retine un numar complex, am folosit o structura - complex, cu 2 variabile(partea reala si partea imaginara);
+
+VARIANTA PARALELA:
+Am folosit MPI_Send pentru a trimite mesajele de la procesul principal catre celelalte procese. 
+In aceste mesaje am trimit 9 elemente:
+	- tip
+	- x_min
+	- x_max
+	- y_min
+	- y_max
+	- rez
+	- MAX_STEPS
+	- param_x
+	- param_y
+	
+Fiecare proces prelucreaza un numar fixat de elemente:
+	ceil(width * height / (double)nrTasks);
+cu exceptia ultimului proces, care prelucreaza doar cat a mai ramas.
+
+Fiecare proces isi calculeaza intervalul pe care trebuie sa lucreze si retine valorile calculate intr-un vector pe care il trimite la procesul principal.
+
+Determin pozitia de pe care incep sa scriu in matrice astfel:
+	- determin linia pe care se incepe scriere: 
+		i = floor((rank * deProcesat)/(double)width);
+	- determin coloana de pe acea linie pe care incepe scrierea:
+		j = (rank * deProcesat) % width;
+		
+In functie de pozitia din matrice, calculez x_min1 si y_min1 - acestea reprezentand indicii de la care incepem calcularea valorilor din vectorul pe care il trimitem din acel proces.
+
+In proces-ul principal, scriu in matrice ceea ce am calculat aici(pentru ca si acest proces calculeaza portiunea care ii revine lui) apoi astept mesaje de la toate celelalte procese si scriu ceea ce primesc, incepand de la pozitia pe care o primesc in mesaj.
+
+Mesajele le primesc cu MPI_Recv si au urmatorul format:
+
+	- pozitie pe i
+	- pozitie pe j
+	- numar de elemente de adaugat in matrice
+	- toate elementele pe care urmeaza sa le adaug in matrice
+	
+Mesajele pe care le trimit la procesul principal au dimensiunea ceil(width * height / (double)nrTasks) + 3, adica numarul de elemente pe care il prelucreaza majoritatea proceselor + 3(elementele care indica pozitia de pe care incepem sa scriem in matrice si cate elemente urmeaza sa scriem).
+
+Am avut probleme cu vectorul in care primeam valorile, deoarece nu foloseam alocare dinamica si imi dadea segmentation fault.

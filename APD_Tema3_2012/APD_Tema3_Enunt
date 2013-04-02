@@ -1,0 +1,108 @@
+ Calcul paralel folosind MPI
+Responsabili de temă: Radu Ciobanu & Vlad Călina
+Data publicării: 02.12.2012
+Data ultimei modificări a enunţului: 12.12.2012
+Termenul de predare: 17.12.2012 18.12.2012, ora 23:55
+
+ 
+Cerință
+
+Să se scrie un program care să calculeze mulțimile Mandelbrot [1] și Julia [2] pentru o funcție polinomială complexă de forma f(z)=z2+c şi să le afişeze sub formă de imagini grayscale. Programul va fi scris in C/C++ și va fi paralelizat utilizând MPI.
+Definiții
+1. Mulțimea Mandelbrot 
+
+Fie familia de polinoame complexe Pc: ℂ→ℂ , definite de Pc(z)=z2+c , cu c un numar complex. Definim multimea Mandelbrot ca fiind multimea punctelor c pentru care secventa 0,Pc(0), Pc(Pc(0)),... nu tinde către infinit.
+
+M={ c | ∃ s∈ℝ a.i. ∀ n∈ℕ, |Pcn(0)|<s }
+
+Generarea și reprezentarea mulțimii Mandelbrot se poate realiza folosind următorul algoritm:
+
+foreach c in the complex plane do
+    z ← 0 + 0i
+    step ← 0
+    while |z| < 2 and step < MAX_STEPS do
+        z ← z*z + c
+        step ← step + 1
+    color ← step mod NUM_COLORS
+    plot(c.x,c.y,color)
+
+	
+2. Mulțimi Julia 
+
+
+Fie f(z): ℂ→ℂ, f(z)=P(z)/Q(z) o funcție rațională complexă. Mulțimea Julia plină Jf a funcției este mulțimea punctelor din planul complex care au o orbită mărginită în raport cu f.
+
+Jf = { z∈ℂ | ∃ s∈ℝ a.i. ∀ n∈ℕ, |f n(z)|<s }
+
+Generarea și reprezentarea mulțimii Julia pline pentru o functie f(z)=z2+c se pot realiza folosind următorul algoritm: 
+
+foreach z in the complex plane do
+    step ← 0
+    while |z| < 2 and step < MAX_STEPS do
+        z ← z*z + c
+        step ← step + 1
+    color ← step mod NUM_COLORS
+    plot(z.x,z.y,color)
+
+	
+Paralelizare
+
+Cei doi algoritmi se vor paraleliza folosind MPI, procesele lucrând pe submulțimi de date aproximativ egale. Astfel, un proces master va citi fișierul de intrare, după care va trimite x_min, x_max, y_min, y_max, rezoluția și numărul de iterații la celelalte procese (se consideră deci că doar master-ul are acces la fișier și la aceste informații). Mai departe, fiecare proces în parte (inclusiv master-ul) își va calcula intervalul din matricea finală de pixeli pe care lucrează și va aplica algoritmul corespunzător asupra acestuia. La final, fiecare proces va trimite master-ului datele calculate, iar master-ul va crea matricea imaginii finale și o va scrie în fișierul PGM de ieșire.
+Format date de intrare/ieșire
+
+Pentru implementarea temei, trebuie să aveți un singur executabil care va primi 2 parametri: numele fișierului de intrare și numele fișierului de ieșire.
+
+
+Fișierul de intrare va avea următorul format:
+
+    prima linie: un întreg care definește tipul de mulțime care va fi generată (0 - pentu calculul mulțimii Mandelbrot; 1 - calculul mulțimii Julia)
+    a doua linie: 4 numere reale (x_min, x_max, y_min, y_max) separate de spații, care definesc subspațiul din planul complex pentru care se realizează calculul. Intervalele pe care se va lucra sunt [x_min,x_max) si [y_min,y_max).
+    a treia linie: un număr real care definește rezoluția (pasul) în cadrul subspațiului ales
+    a patra linie: numărul maxim de iterații pentru generarea mulțimilor (MAX_STEPS)
+    în cazul în care se realizeaza calcului mulțimii Julia (1 pe prima linie), pe cea de-a cincea linie se vor găsi 2 numere reale ( și ) separate de spațiu, care definesc parametrul complex  al funcției
+
+Exemple:
+
+0
+-2.5 1.0 -1.0 1.0
+0.001
+5000
+
+	  	Va genera mulțimea Mandelbrot între -2.5 și 1.0 pe axa OX, respectiv între -1.0 și 1.0 pe axa OY cu o rezoluție de 0.001. În cadrul algoritmului se va folosi un număr de maximum 5000 iterații.
+
+1  
+-2.0 2.0 -2.0 2.0
+0.001
+5000
+-0.6 0
+
+	  	Va genera mulțimea Julia a functiei  între -2.0 și 2.0 pe axa OX, respectiv între -2.0 și 2.0 pe axa OY cu o rezoluție de 0.001. În cadrul algoritmului se va folosi un număr de maximum 5000 iterații.
+
+Rezultatele programului vor fi scrise în fișierul de ieșire în format PGM “plain” [3]. Imaginea rezultată va avea un numar de 256 de nuanțe de gri (valori intre 0 si 255). Dimensiunile imaginii finale se calculează pe baza x_min, x_max, y_min, y_max si rezoluție, conform formulelor:
+
+Width=[(x_max-x_min)/resolution]
+Height=[(y_max-y_min)/resolution]
+
+În formulele anterioare [x] reprezintă partea întreagă a lui x (cel mai mare număr întreg mai mic sau egal cu x).
+ 
+ 
+O imagine de tip PGM “plain” are următorul format:
+
+       prima linie: numărul magic specific formatului (“P2”)
+       a doua linie: lățimea și înălțimea imaginii în pixeli (separate de spațiu)
+       a treia linie: valoarea maximă de gri (în cazul de față va fi 255, adică NUM_COLORS - 1 din algoritmii prezentați în a doua secțiune)
+       următoarele linii: valorile de gri ale pixelilor de pe fiecare linie din imagine, separate prin spații albe.
+
+Pentru a deschide imagini PGM, puteți folosi diverse editoare de imagini (de exemplu, Gimp).
+
+Atenție! Deoarece în cazul coordonatelor matematice, punctul (0,0) se află în partea de stânga-jos a axelor și axa OY este îndreptată în sus, iar pentru coordonatele ecran, punctul (0,0) se află în partea de stânga-sus și axa OY este îndreptată în jos, în momentul în care salvați datele în fișierul de ieșire, va trebui să scrieți coordonatele Y în ordine inversă, așa cum puteți vedea în imaginea de mai jos. Recomandam totusi parcurgerea spatiului complex in ordine directa(de la X_min la X_max si de la Y_min la Y_max) astfel incat sa se evite posibile erori de precizie.
+
+Testare
+
+Temele se vor testa pe cluster pentru diferite valori ale lui N (numărul de procese), așa că este recomandat să vă rulați tema variind N și verificând că obțineți același rezultat pe toate cazurile. Puteți găsi aiciun set de teste publice și output-urile corespunzătoare. Pe lângă aceste teste, vom rula și câteva teste private. Pentru verificarea rezultatului vostru cu cele obținute de noi, puteţi folosi programul imgdiff care se află în arhivă(imgdiff - 64 biti si imgdiff32 - 32 biti). Deoarece se lucrează cu valori cu multe zecimale şi cu operaţii de radical şi ridicări la pătrat, pot apărea erori de rotunjire în funcţie de compilatorul folosit. Din această cauză, există posibilitatea ca output-ul vostru să difere un pic de rezultatele noastre, însă imgdiff ia în considerare acest lucru când compară doua fişiere PGM (pe care le primește ca parametri în linia de comandă).
+
+Tema se va trimite într-o arhiva .zip care pe lângă fișierele sursă va trebui sa conțină următoarele 2 fișiere în rădăcina arhivei:
+
+    Makefile - rularea comenzii make trebuie sa compileze tema și sa genereze executabilul
+    readme.txt 
+
