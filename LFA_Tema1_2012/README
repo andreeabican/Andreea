@@ -1,0 +1,33 @@
+Badoiu Simona Andreea 331CB
+
+Pentru implementarea acestei teme am folosit flex si C/C++
+
+Parsarile le-am facut in flex, si am retinu masinile turing in structuri;
+Tema functioneaza doar pentru cazurile simple;
+
+Am folosit o structura: masina
+Acestea sunt informatiile din structura:
+	- int okTranzitii -> 0 daca nu incep tranzitii din acest punct
+					  -> 1 daca incep tranzitii din acest punct
+	- string c		  -> retine caracterul cu care trebuie sa inlocuim sau caracterul la care trebuie sa ajungem cu o anumita masina turing
+						 sau numele unei bucle, in cazul in care apar bucle
+	- string name	  -> numele masinii care a fost apelata
+						 "litera" atunci cand este o masina care suprascrie un caracter
+						 "bucla" atunci cand am ajuns la o masina care pur si simplu spune sa ne intoarcem undeva in program(in acest caz c va reprezenta numele temporar la care trebuie sa ne intoarcem)
+	- vector<string> loops		-> in loops retin toate numele buclelor care apar, iar in adreseloops, pe aceeasi pozitie cu numele, pastrez adresa
+								   masinii la care trebuie sa revin pentru a executa bucla. Acesti vectori sunt folositi doar de prima adresa de la 
+								   care incepe o masina turing, adica cea care este pastrata in vectorul de masini turing care exista in program;
+	- vector<masina*> adreseloops
+	
+	- masina* next	 	        -> adresa urmatoarei masini la care trecem dupa execurea masinii in care ne aflam acum
+	- vector<string> tanzitii	-> atunci cand okTranzitii este unu, aici retinem fiecare tranzitie pozibila "0", "1", "01" - adica un sir de 
+								   caractere care reprezinta caracterele acceptate pentru a executa ce urmeaza dupa -> in descrierea masinii
+								   Dupa ce aflam pe ce indice din aces vector se afla caracterul pe care ne aflam, executam masina turing din 
+								   vectorul "tranzitie" care pastreaza adresa masinii turing la care incepe aceasta executie
+	- vector<masina*> tranzitie
+	
+Pentru fiecare masina elementara am implementat cate o functie; Functiile lucreaza direct cu adrese, asa ca nu returneaza nimic, ci modifica direct sirul de caractere pe care lucram si pozitia la care se gaseste capul de citire;
+
+Functia Execute - executa o masina turing complexa. Daca in timpul executiei a gasit apelul unei alte masini complexe, atunci intra intr-un apel recursiv. In rest, trece mereu la masina dictata de next, sau se intoarce la cea specificata de numele unei bucle.
+
+La parsare, atunci cand intalneam "(" adaugam la sfarsitul vectorului "vectorTranzitii" masina la care ma aflam in momentul respectiv si tot ce urma - adica tranzitiile, le adaugam la vectorii tranzitii si tranzitie din acea masina. Cand se inchidea paranteza, scoteam acea adresa din vector. Asa am rezolvat tranzitiile care apareau in interiorul altor tranzitii :).
