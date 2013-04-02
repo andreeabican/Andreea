@@ -1,0 +1,16 @@
+Badoiu Simona Andreea
+321CB
+
+In aceasta tema am folosit algoritmul expectiminimax, implementat cu ajutorul pseudocodului de pe wikipedia. Eu l-am simplificat si nu functioneaza decat pentru adancime 3, dar este ok si chiar prea mult, asa ca am comentat partea unde facea toate mutarile pentru toate posibilitatile de zaruri pentru adversar si am generat doar prima mutare pentru toate posibilitatile de zaruri, astfel am micsorat timpul, pentru ca dura ceva de genul 1 minut.
+
+Tabla mea este un ArrayList<Prop>, unde Prop este o clasa care are doua campuri(culoare si numar piese de pe pozitia respectiva din tabla)
+
+Ideea este ca tema nu bate niciun bot, pentru ca nu se termina. Nu stiu de ce, expectiminimax nu imi genereaza mutari atunci cand trebuie sa scoata din casa.
+Mai aveam o varianta care bate din cand in cand botul 7, putin mai des botul 5 si destul de des dumb bot dar nu foloseste expectiminimax.
+
+Ca functii de evaluare am folosit 
+	- una care penalizeaza atunci cand avem piese singure pe tabla;
+	- una care da bonus atunci cand avem poarta in casa;
+	- una care penalizeaza atunci cand avem piese pe bara.
+	
+Codul este cam incurcat si mult dar sper sa se inteleaga ceva.
