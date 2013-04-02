@@ -1,0 +1,22 @@
+Badoiu Simona Andreea
+321 CB
+
+Tema mea iese pe 14 din cele 16 teste.
+Am folosit algoritmii din laborator, deci pentru ultimele 2 teste nu se incadreaza in timp, restul obtinand un timp acceptabil.
+Pentru a retine graful am folosit hashMap pentru ca am inteles ca este mai rapid.
+In memorie se incadreaza destul de bine, cu mici probleme(daca rulez de mami multe ori la rand, obtin variatii mari de genul 17 MB, 65 MB, 13 MB si iar 60 - nu am inteles de ce).
+
+Imaginea am retinut-o intr-un vector de int.
+
+In functia care satureaza drumurile, am aplicat BFS, am aflat fluxul maxim pe acel drum si am scazut din fiecare capacitate, valoarea obtinuta.
+Functia returneaza fluxul maxim din acel drum.
+	BFS in general gaseste un drum de genul Sursa->nod->Drena => complexitate buna.
+
+In maxFlow am apelat saturatePath pana cand nu am mai gasit niciun drum de la sursa la drena si de fiecare data, am adunat ce intoarce saturatePath la fluxulmaxim din maxFlow. Suma finala este maxFlow din graf.
+	nrDrumuri*BFS
+
+Algoritmi folositi si complexitati:
+	BFS: O(|V|+E)
+
+Mai multe detalii in comentariile din tema.
+
