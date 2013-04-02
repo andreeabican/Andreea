@@ -1,0 +1,151 @@
+Badoiu Simona Andreea 331CB
+
+Pentru programul serial, complexitatea este O(n^4*nrAni).
+Pentru programul paralel, complexitatea este (complex alg. serial)/N, N=nr-ul de threaduri
+Algoritmul optim, complexitate O(t*(n^2)).
+Optim paralel nu scaleza...deloc
+
+Pentru programul serial am scris 5 for-uri. Am aplicat formulele din enunt.
+
+Pentru varianta paralela, am folosit:
+	pragma omp parallel inainte de pragma omp for;
+	pragma omp for, inainte de primul for din cele 4 care merg pana la n;
+	am setat variabilele (i,j,k,l, pret, cost, costRes) - private pentru ca erau independente pentru fiecare thread, niciodata nu depindeau de corespondentele lor din celelalte threaduri;
+	am folosit reduction pentru nrA si nrB pentru ca erau updatate in fiecare thread dar trebuia ca la sfarsit sa fie insumate;
+	inainte de a updata pretMaxA si pretMaxB am folosit "critical", deoarece updatarea trebuia facuta neaparat in acel moment si nu dupa ce alt thread ar fi intrerupt executia. Daca alt thread ar fi intrerupt executia, era posibil sa obtinem rezultate gresite, facand update-uri eronate.
+
+Am observat ca pentru valori diferite ale chunk-ului se obtin timpi foarte foarte apropiati, asa ca nu am rulat chiar pentru toate cazurile.
+
+Calculele pentru speed-up le-am facut cu cea mai mica valoare de timp obtinuta, valorile fiind scrise mai jos.
+
+Rezultate teste cluster:
+Teste pe in50_1.txt
+N = 50, 500 iteratii
+Serial: 0m57.864s
+Paralel 1:
+	Schedule: dynamic
+		chunck 1: 1m3.333s
+		chunck 5: 1m3.324s
+		chunck 10: 1m3.324s
+	Schedule: static
+		chunck 1: 1m3.319s
+		chunck 5: 1m3.331s
+		chunck 10: 1m3.324s
+	Schedule: guided
+		chunck 1: 1m3.335s
+		chunck 5: 1m3.322s
+		chunck 10: 1m3.326s
+Speed-up: 0.91
+
+Paralel 2:
+	Schedule: dynamic
+		chunck 1: 0m31.917s
+		chunck 5: 0m31.922s
+		chunck 10: 0m31.921s
+	Schedule: static
+		chunck 1: 0m31.911s
+		chunck 5: 0m31.926s
+		chunck 10: 0m31.936s
+	Schedule: guided
+		chunck 1:
+		chunck 5: 0m31.925s
+		chunck 10: 0m31.923s
+Speed-up: 1.81
+
+Paralel 4:
+	Schedule: dynamic
+		chunck 1: 0m16.581s
+		chunck 5: 0m16.579s
+		chunck 10: 0m16.588s
+	Schedule: static
+		chunck 1: 0m16.577s
+		chunck 5: 0m16.589s
+		chunck 10: 0m16.575s
+	Schedule: guided
+		chunck 1: 0m16.588s
+		chunck 5: 0m16.581s
+		chunck 10: 0m16.582s
+Speed-up: 3.49
+
+Paralel 8:
+	Schedule: dynamic
+		chunck 1: 0m9.075s
+		chunck 5: 0m9.107s
+		chunck 10: 0m9.093s
+	Schedule: static
+		chunck 1: 0m9.090s
+		chunck 5: 0m9.038s
+		chunck 10: 0m9.350s
+	Schedule: guided
+		chunck 1: 0m9.106s
+		chunck 5: 0m9.091s
+		chunck 10: 0m9.083s
+Speed-up: 6.4
+		
+N = 100, 50 iteratii
+Teste pe in100_1.txt
+Serial: 1m45.689s
+Paralel 1:
+	Schedule: dynamic
+		chunck 1:
+		chunck 5: 
+		chunck 10: 1m56.764s
+	Schedule: static
+		chunck 1:
+		chunck 5: 1m56.794s
+		chunck 10: 1m56.772s
+	Schedule: guided
+		chunck 1:
+		chunck 5:
+		chunck 10: 1m56.765s
+Speed-up: 0.9
+
+Paralel 2:
+	Schedule: dynamic
+		chunck 1:
+		chunck 5: 0m58.554s
+		chunck 10:
+	Schedule: static
+		chunck 1: 0m58.555s
+		chunck 5:
+		chunck 10:
+	Schedule: guided
+		chunck 1:
+		chunck 5:
+		chunck 10: 0m58.698s
+Speed-up: 1.8
+
+Paralel 4:
+	Schedule: dynamic
+		chunck 1:
+		chunck 5: 0m29.317s
+		chunck 10:
+	Schedule: static
+		chunck 1:
+		chunck 5:
+		chunck 10: 0m29.438s
+	Schedule: guided
+		chunck 1:
+		chunck 5: 0m29.323s
+		chunck 10:
+Speed-up: 3.6
+
+Paralel 8:
+	Schedule: dynamic
+		chunck 1:
+		chunck 5:
+		chunck 10: 0m15.707s
+	Schedule: static
+		chunck 1: 0m15.405s
+		chunck 5:
+		chunck 10:
+	Schedule: guided
+		chunck 1:
+		chunck 5:
+		chunck 10: 0m15.383s
+Speed-up: 6.87
+
+Pentru algoritmul optim, cateva explicatii sunt in cod.
+Optim serial:
+in50_1.txt cu 5000 de ani: 0m3.500s
+in100_1.txt cu 2000 de iteratii: 0m5.824s
