@@ -1,0 +1,24 @@
+Simona Badoiu 331CB
+
+Pentru prima parte, am rulat algoritmul de determinare a topologiei prin mesaje de sondaj cu ecou.
+	- Nodul 0 incepe sa trimita mesaje de sondaj catre toti vecinii sai. Atunci cand un nod primeste un mesaj de sondaj, adauga expeditorul acestui mesaj ca next-hop pentru oricare alt nod(cu exceptia rutei catre el...)
+	- Daca un nod primeste 2 sau mai multe mesaje de sondaj, acesta accepta doar primul mesaj si il trimite mai departe, iar pentru restul, trimite expeditorilor acelor mesaje, un mesaj de ecou nul;
+	- Cand mesajele de sondaj ajung la frunze, frunzele incep sa trimita ecouri catre parintii lor. Un mesaj de ecou contine tabela de rutare a expeditorului.
+	- Cand nodul n primeste un mesaj de ecou de la nodul i, tabela lui n se actualizeaza astfel:
+		- tabela[i] = i;
+		- daca in tabela de rutare primita, next hop pentru un nod este diferit de n, atunci in tabela lui n, next hop pentru nodul respectiv va deveni i;
+	
+Pentru a doua parte:
+	- se citeste din fisier, iar daca un nod gaseste un mesaj pe care trebuie sa il trimita il trimie catre next-hop in functie de destinatie;
+	- daca este un mesaj de broadcast, atunci il trimite catre toti vecinii
+	- dupa ce se trimit toate mesajele, pe acelasi canal pe care am trimit mesajele(acelasi tag, acelasi tip) se trimite un mesaj de terminare;
+	- Nodurile asteapta mesaje atata timp cat nu au primit n-1 mesaje de terminare(eu am folosit un vector si atunci cand primesc un mesaj de terminare de la nodul n, setez valoarea 1 pe pozitia n in acel vector)
+	- Cand un nod primeste un mesaj, verifica de ce tip este:
+		- daca este de broadcast il trimite la toti vecinii sai
+		- daca este pentru el, afiseaza ca l-a primit
+		- daca nu este pentru el, trimite la next-hop
+		- daca este de terminare "exit " - procedeaza cum am spus mai sus
+	- Cand toate nodurile au primit mesaje de terminare de la toate celelalte noduri, programul se termina.
+	
+	Am sters nodurile care faceau parte dintr-un ciclu, acolo unde era cazul(am folosit informatiile pe care le-am aflat la pasul 1)
+

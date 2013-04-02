@@ -1,0 +1,92 @@
+ Tema 4 – Simularea unei retele in MPI
+
+Responsabil: Catalin Leordeanu
+
+Data ultimei modificari: 21.12.2012
+
+Termenul de predare: 18.01.2013, ora 23:55
+
+In secolul 23, in urma unui razboi nuclear singurii supravietuitori se gasesc in buncare bine protejate. Oamenii nu pot iesi la suprafata iar singurul lor mijloc de comunicatie il reprezinta cateva linii de telegraf ingropate intre cateva buncare. Supravietuitorii incearca in aceasta situatie sa reconstruiasca o parte din civilizatia pierduta si sa incerce sa comunice folosind aceste mijloace rudimentare.
+
+Se cere simularea retelei de comunicatie in MPI. Reteaua va reprezenta practic un graf (care poate contine si cicluri) ale carui noduri reprezinta buncarele descrise mai sus iar muchiile grafului reprezinta legaturile de comunicatie. Fiecare nod are aceeasi functionalitate, fiind simulat folosind un process MPI. Nici un buncar nu poate trimite mesaje decat unui alt buncar cu care este conectat direct.
+
+Se considera topologia stabila, nu vor aparea modificari ale sale in timpul rularii programului. Atat numele fisierului ce va contine topologia cat si cel pentru mesajele trimise vor fi transmise ca parametru la rulare. Exemplu de comanda de rulare
+
+mpiexec -np 10  ./tema4 fisier_topologie fisier_mesaje
+
+Pentru refacerea civilizatiei supravietuitorii au stabilit urmatoarele etape:
+
+1. Sa descopere modul in care sunt conectate toate buncarele pentru a putea incepe sa se organizeze.
+
+La pornire fiecare proces MPI va citi dintr-un fisier lista sa de adiacenta. In acest mod fiecare nod cunoaste doar nodurile cu care este conectat direct si poate comunica doar cu acestea.
+
+In acest moment fiecare nod al grafului va rula algoritmul de stabilire a topologiei folosind mesaje de sondaj cu ecou(gasiti o descriere a algoritmului in laboratorul de stabilire a topologiei) pentru a genera o tabela de routare. Fiecare proces va afisa tabela creata.
+
+Exemplu de fisiere de intrare
+
+Fisierul de topologie:
+
+0: 1 2
+
+1: 0 3 4 5 6
+
+2: 0 7 8
+
+3: 1
+
+4: 1 9 10
+
+5: 1
+
+6: 1
+
+7: 2
+
+8: 2 11
+
+9: 4
+
+10: 4
+
+11: 8
+
+In cazul de mai sus se considera un singur fisier din care fiecare nod va citi linia cu lista de adiacenta care ii apartine.
+
+2. Stabilirea unui sistem de posta prin care supravietuitorii sa-si poata trimite mesaje
+
+Dupa ce fiecare nod si-a creat propria tabela de routare se pot trimite mesaje intre buncare.
+
+Va exista un fisier la care va avea acces fiecare proces MPI care va avea pe prima linie numarul n de mesaje si pe urmatoarele n linii cate o comanda de forma:
+<nod_sursa> <nod_destinatie> mesaj
+
+Dupa citirea fisierului procesul cu rangul nod_sursa va trimite mesajul cu destinatia specificata. Toate procesele intermediare si destinatia vor afisa informatii legate de mesaj: nodul de la care a fost primit, urmatorul nod caruia ii este transmis, destinatia, etc.
+
+Daca in cazul destinatiei apare litera B, acela este un mesaj de broadcast.
+
+Fisierul care contine mesajele ce vor fi trimise dupa determinarea tabelelor de routare:
+
+5
+
+9 1 Mesaj trimis
+
+7 9 Buna ziua!
+
+5 8 Alt mesaj
+
+3 B Mesaj de broadcast
+
+4 2 Salut, vecine...
+
+Fiecare nod poate anunta toate buncarele cand termina de trimis toate mesajele. In acest mod puteti determina cand se incheie etapa 2.
+
+3. Stabilirea unor structuri de conducere
+
+Se doreste desemnarea intr-un mod democratic a unui buncar care sa aiba rol de lider si a unui lider adjunct. Se alege arbitrar un buncar care va centraliza rezultatele votului(poate fi nodul cu rangul 0).
+
+Fiecare nod, va trimite un mesaj care contine votul sau pentru id-ul buncarului lider si pentru cel adjunct catre nodul centralizator. Un buncar nu poate sa se voteze pe sine pentru una din acele pozitii, trebuie sa aleaga dintre id-urile altor buncare(eventual random).
+
+Nodul centralizator va aduna voturile, le va numara si va anunta restul buncarelor rezultatul votului. Rezultatu poate fi ori ca s-au ales cele doua buncare de conducere si se vor anunta id-urile lor, ori ca a fost o egalitate si ca se repeta votul pentru pozitia de buncar lider, de adjunct, sau pentru amandoua.
+
+Aceasta etapa se termina cand s-au ales cele doua pozitii si toate buncarele cunosc rezultatul voturilor.
+
+Este obligatoriu sa existe in arhiva trimisa un makefile, un readme si un exemplu de fisiere de intrare, pe langa surse, bineinteles. 
