@@ -1,0 +1,31 @@
+Badoiu Simona Andreea 331CB
+
+Utilizarea tastelor:
+1 - camera fata
+2 - camera nava
+Q - camera asteroid -> la click pe un asteroid, camera va fi fixata pe acesta
+
+Pentru vederea din fata, tastele pe care se misca nava sunt urmatoarele:
+	 - 8 spre dreapta navei
+	 - 5 spre stanga navei
+	 - 4 inainte
+	 - 6 inapoi
+	 
+Pentru a muta camera, folositi tastele W, A, S, D
+	 
+Pentru vederea de pe nava:
+	- 8 inainte
+	- 4 stanga
+	- 5 inapoi
+	- 6 dreapta
+	- w sus
+	- s jos
+	
+Cu click pe un asteroid se distruge asteroidul respectiv
+Cand nava este distrusa, se asteapta 3 secunde si se reia jocul.
+Am folosit lumini si materiale.
+Pentru scut am folosit blend, iar pentru a vedea prin scut atunci cand camera este in interiorul acestuia am dezactivat GL_DEPTH_TEST atunci cand l-am desenat.
+
+Asteroizii se genereaza random. Obiectele pentru asteroizi sunt desenate doar odata si de fiecare data cand un asteroid ajunge la limita din dreapta i se genereaza alte coordonate de start, alta dimensiune si alta viteza.
+
+	

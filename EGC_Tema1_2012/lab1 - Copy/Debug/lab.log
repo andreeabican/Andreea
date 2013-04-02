@@ -1,0 +1,37 @@
+﻿Build started 27.10.2012 14:41:28.
+     1>Project "C:\Users\user\Desktop\Anul III\Tema1 EGC\lab1 - Copy\lab.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\lab.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Idependinte /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Actions.cpp Collisions.cpp Draw.cpp main.cpp Support2d.cpp Transform2d.cpp WorldDrawer2d_gl.cpp
+         WorldDrawer2d_gl.cpp
+         Transform2d.cpp
+         Support2d.cpp
+         main.cpp
+     1>c:\users\user\desktop\anul iii\tema1 egc\lab1 - copy\main.cpp(164): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+         Draw.cpp
+         Collisions.cpp
+         Actions.cpp
+     1>c:\users\user\desktop\anul iii\tema1 egc\lab1 - copy\actions.cpp(10): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+         Generating Code...
+     1>c:\users\user\desktop\anul iii\tema1 egc\lab1 - copy\collisions.cpp(40): warning C4715: 'Collisions::borderCollision' : not all control paths return a value
+       Link:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"Debug\lab.exe" /NOLOGO /LIBPATH:dependinte opengl32.lib glu32.lib freeglut.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\lab.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\user\Desktop\Anul III\Tema1 EGC\lab1 - Copy\Debug\lab.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Debug\lab.lib" /MACHINE:X86 Debug\Actions.obj
+         Debug\Collisions.obj
+         Debug\Draw.obj
+         Debug\main.obj
+         Debug\Support2d.obj
+         Debug\Transform2d.obj
+         Debug\WorldDrawer2d_gl.obj
+         LINK : Debug\lab.exe not found or not built by the last incremental link; performing full link
+         lab.vcxproj -> C:\Users\user\Desktop\Anul III\Tema1 EGC\lab1 - Copy\Debug\lab.exe
+       Manifest:
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"Debug\lab.exe;#1" /manifest Debug\lab.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Debug\lab.unsuccessfulbuild".
+         Touching "Debug\lab.lastbuildstate".
+     1>Done Building Project "C:\Users\user\Desktop\Anul III\Tema1 EGC\lab1 - Copy\lab.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:06.15

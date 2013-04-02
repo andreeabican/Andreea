@@ -1,0 +1,23 @@
+Badoiu Simona Andreea 331CB
+
+Pentru aceasta tema, am incarcat labirintul dintr-un fisier text, iar in spatiile libere asez aleator eroul, torul si cativa inamici. Inamicii se misca la intamplare si pot fi omorati(daca sunt impuscati de 3 ori).
+
+Am implementat cele 3 tipuri de vederi:
+	- de sus;
+	- third person: am implementat doar rotirea pe OY a camerei deoarece nu cred ca este necesar sa ne rotim si pe alte axe pentru acest joculet;
+	-first person: camera nu se roteste decat pe axa OY, odata cu jucatorul.
+	
+Pentru implementarea camerelor, am procedat astfel: de fiecare data cand jucatorul se misca, camera.render(...) primeste din ce punct priveste si spre ce punct priveste. Astfel camera va urmari mereu jucatorul.
+Pentru deplasarea jucatorului, am modificat coordonatele pe X si pe Z cu formulele de la 2D.
+	
+Am aplicat texturi pe peretii labirintului. Am folosit o functie care incarca imagini de tip TGA.
+
+Am folosit lumini, pentru a da un aspect mai real obiectelor.
+
+Coliziunile cu peretii sunt de tip sfera-cub, iar coliziunile tor-erou, tor-inamici, inamici-gloante sunt de tip sphere-sphere.
+Daca un inamic ne atinge, eroul moare(dispare din ecran, iar la first person view nu mai putem initia nicio actiune).
+
+Pe tastele 1, 2, 3 - se schimba modul de vizualizare.
+Pe W, S - ne miscam stanga dreapta si pe A, D - ne rotim stanga, dreapta.
+Pentru Third person view: pe 4,6 - rotim camera in jurul axei OY.
+Pe Space - se trage in inamici.

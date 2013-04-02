@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="lab8">
+</Property><Property Name="Solution File" Value="C:\Users\user\Desktop\Anul III\Tema4 EGC\lab8\Laborator 8\lab8.sln">
+</Property><Property Name="Date" Value="13 ianuarie 2013">
+</Property><Property Name="Time" Value="15:38">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="lab8.sln" Description="File successfully backed up as C:\Users\user\Desktop\Anul III\Tema4 EGC\lab8\Laborator 8\lab8.sln.old">
+</Event><Event ErrorLevel="0" Project="lab8" Source="lab8.vcproj" Description="Converting project file 'C:\Users\user\Desktop\Anul III\Tema4 EGC\lab8\Laborator 8\lab8.vcproj'.">
+</Event><Event ErrorLevel="1" Project="lab8" Source="lab8.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="1" Project="lab8" Source="lab8.vcproj" Description="MSB8012: $(TargetPath) ('C:\Users\user\Desktop\Anul III\Tema4 EGC\lab8\Laborator 8\.\Debug\lab8.exe') does not match the Linker's OutputFile property value '.\Debug/lab8.exe' ('C:\Users\user\Desktop\Anul III\Tema4 EGC\lab8\Laborator 8\Debug/lab8.exe') in project configuration 'Debug|Win32'. This may cause your project to build incorrectly. To correct this, please make sure that $(TargetPath) property value matches the value specified in %(Link.OutputFile).">
+</Event><Event ErrorLevel="1" Project="lab8" Source="lab8.vcproj" Description="MSB8012: $(TargetPath) ('C:\Users\user\Desktop\Anul III\Tema4 EGC\lab8\Laborator 8\.\Release\lab8.exe') does not match the Linker's OutputFile property value '.\Release/lab8.exe' ('C:\Users\user\Desktop\Anul III\Tema4 EGC\lab8\Laborator 8\Release/lab8.exe') in project configuration 'Release|Win32'. This may cause your project to build incorrectly. To correct this, please make sure that $(TargetPath) property value matches the value specified in %(Link.OutputFile).">
+</Event><Event ErrorLevel="0" Project="lab8" Source="lab8.vcproj" Description="Done converting to new project file 'C:\Users\user\Desktop\Anul III\Tema4 EGC\lab8\Laborator 8\lab8.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="lab8" Source="lab8.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="lab8.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="lab8.sln" Description="Converted">
+</Event></UpgradeLog>
