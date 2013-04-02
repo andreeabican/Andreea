@@ -1,0 +1,14 @@
+Badoiu Simona Andreea
+321 CB
+
+Am reusit sa fac functia de detectare a recursivitatii si partea cu variabilele din partea a 2-a a temei.
+
+Pentru prima parte am folosit o functie ajutatoare care lua primul element din fiecare sublista a listei care reprezenta body-ul functiei. Daca numele functiei aparea in acea lista de mai mult de o data era tree-recursive sau stack-recursive, iar daca aparea doar o data, era tail recursive.
+Daca numele functiei nu aparea in aceasta lista, atunci functia nu era recursiva.
+
+La partea a 2-a am folosit mai multe functii.
+O functie care parcurge tot corpul functiei, si pe masura ce o parcurge o reconstruieste.
+
+Daca un element din functie potriveste cu un element din patternul pentru reconstruire, atunci se trimite la functia replace, care verifica daca toata sublista se potriveste cu patternul dat in WHEN si care creeaza o lista de perechi (variabila valoare). Daca am parcurs toata lista si nu am descoperit diferente intre aceasta si patern, se apeleaza functia inlocuire care reconstruieste lista conform listei corespunzatoare lui THEN.
+
+Mai multe detalii legate de implementare se gasesc in comentariile din tema.
