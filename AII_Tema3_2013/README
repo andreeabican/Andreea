@@ -1,0 +1,41 @@
+Badoiu Simona Andreea 341C4
+
+
+Fiecare proiect are asociate doua echipe - una de programatori
+					 - una de controlori de calitate
+Am scris o functie mysql care calculeaza pretul unui produs(aceasta foloseste mai multe functii ajutatoare - to in mysql scrise)
+
+Utilizatori folositi pentr testarea temei:
+	Client: Dragusin Camelia
+	Administrator: Zota Daniel
+	Consilier tehnic: Popa Cristina
+
+Atunci cand un vizitator intra in aplicatie, vede o pagina de vizitator:
+	- aceasta pagina contine toate produsele lansate si preturile lor alaturi de toate produsele nelansate si preturile lor. In aceasta interfata nu exista posibilitatea adaugarii unui produs in cos sau votarii unui produs. Nu se pot trimite nici raportari ale unor probleme. Toate aceste functionalitati sunt disponibile doar pentru utilizatorii logati;
+	- vizitatorul poate cauta produsele dupa nume sau dupa descriere, le poate filtra dupa pret si le poate ordona dupa rating sau dupa pret;
+	- in interfata vizitatorului exista doua butoane: Autentificare si Nu am cont! - acestea pot fi folosite pentru atentificarea cu un cont deja existent sau crearea unui nou cont;
+
+Utilizatorul autentificat:
+	- poate adauga in cosul de cumparaturi si poate sterge din cos;
+	- poate da o nota produselor pe care le-a cumparat;
+	- poate raporta o problema pentru produsele pe care le-a cumparat;
+	- isi poate edita datele personale;
+	- poate vedea istoricul comenzilor sale si detaliile fiecarei comenzi. Pentru facturile neachitate are doua posibilitati: anularea facturii sau achitarea facturii.(detaliile personale si istoricul comenzilor pot fi accesate prin click pe mesajul de bun venit din stanga-sus a paginii);
+	- sub mesajul de intampinare se gaseste butonul de Logout care intoarce utilizatorul in pagina de vizitator;
+	- ca si vizitatorul - poate cauta dupa nume si dupa descriere, poate filtra in functie de pret si poate sorta in functie de rating sau in functie de pret;
+	- atunci cand cineva face o cerere pentru un cont nou, se verifica daca numele de utilizator exista deja, iar daca exista se afiseaza o eroare. Altfel - se adauga o intrare in tabela "cerere_cont_utilizator".
+	- poate finaliza comanda - asta inseamna ca se adauga o intrare cu statut "emisa" in tabela facturi si se adauga toate produsele in tabela randfactura continand produsul achizitionat, cantitatea si pretul.
+
+Consilierul tehnic:
+	- vede mesajele primite si are un buton Raspunde care il duce intr-o interfata in care poate scrie un raspuns la plangerea primita.
+
+Administratorul:
+	- poate edita datele utilizatorilor si ii poate sterge;
+	- poate accepta cereri de la utilizatorii noi sau le poate respinge.
+
+Media votrilor unui proiect este calculata tot cu ajutorul unei functii scrise in mysql.
+
+Nu am implementat nimic pentru reprezentatul de vanzari.
+
+La realizarea temei am ales sa folosesc JavaServlets iar ca server web - Apache Tomcat 7.0
+
