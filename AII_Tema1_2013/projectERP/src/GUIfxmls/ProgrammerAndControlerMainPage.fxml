@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ProgrammerAndControllerGUI">
+  <children>
+    <Circle fill="DODGERBLUE" layoutX="129.0" layoutY="114.0" mouseTransparent="true" onMouseClicked="#onPersonalBubbleAction" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+    <Circle fill="DODGERBLUE" layoutX="300.0" layoutY="286.0" onMouseClicked="#onProiecteBubbleAction" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+    <Circle fill="DODGERBLUE" layoutX="463.0" layoutY="117.0" onMouseClicked="#onDefecteBubbleAction" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+    <Text layoutX="84.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PERSONAL">
+      <font>
+        <Font size="17.0" fx:id="x1" />
+      </font>
+    </Text>
+    <Text font="$x1" layoutX="424.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DEFECTE" />
+    <Text font="$x1" layoutX="261.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PROIECTE" />
+  </children>
+</AnchorPane>

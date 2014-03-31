@@ -1,0 +1,46 @@
+Badoiu Simona Andreea 341 C4
+
+Pentru implementarea acestei teme, am construit fisiere fxml in SceneBuilder si am creat cate o clasa in Java pentru fiecare.
+Aplicatia functioneaza in felul urmator:
+	- in clasa principala, LoginPage, am implementat o metoda care verifica ce tip de utilizator s-a inregistrat si in functie de asta, deschide o anumita interfata grafica.
+
+Programatorii si QA au acces la:
+	- informatii personale(exact ce vede un angajat de la resurse umane despre el);
+	- lista de proiecte la care sunt inscrisi;
+	- lista de defecte pentru proiectele la care sunt inscrisi + posibilitatea de editare in limita drepturilor oferite fiecaruia
+	- pentru responsabilii de departament, exista si optiunea adauga/modifica proiecte. Aceasta optiune este blocata pentru programatorii
+	si controlorii de calitate obisnuiti.
+
+Adaugarea/Modificare proiectelor:
+	- se pot adauga proiecte noi
+	- se poate adauga responsabilul de echipa(am considerat ca responsabilul de echipa nu face neaparat parte din echipa - trebuie sa se adauge explicit la echipa)
+	- se pot adauga versiuni pentru un proiect(inclusiv perioada in care se va lucra la acea versiune)
+	- se pot adauga angajati la echipa(specificand perioada pe care vor face parte din echipa) - Lista de angajati din care se poate alege pentru un proiecte se construieste in functie de disponibilitatea angajatilor in perioada in care urmeaza sa fie asignati echipei.
+	- Cand se da click pe un proiect din lista de proiecte, se afiseaza intr-un tabel membrii echipei.(la adaugarea unui nou membru tabela cu membrii nu se actualizeaza automat trebuie sa se dea din nou click pe proiectul respectiv)  
+
+Fiecarui proiect ii este atribuita o echipa, iar fiecare echipa are un responsabil. Responsabilul poate fi din departamentul programatorilor sau din departamentul de asigurare a calitatii.
+
+Resursele umane:
+	- Au acces la informatii personale si la informatii despre toti ceilalti angajati;
+	- Informatiile despre ceilalti angajati sunt: pontaj, zile concediu, zile concediu ramase, zile de concediu medical in ultimul an, zile de concediu fara plata in anul curent.
+	- Se afiseaza un mesaj de eroare atunci cand numarul de ore nu a fost indeplinit;
+	- Se poate alege perioada pentru care sa se afiseze informatiile despre pontaj(Activitatea utilizatorului se afiseaza doar dupa ce se apasa butonul "Afiseaza activitate");
+	- Pentru a testa ca se verifica bine daca s-a indeplinit numarul de ore se poate alege orice perioada din 2013-10 pentru ca sunt adaugate informatii de pontaj (sunt adaugate informatii de pontaj si pentru weekend) (2013-10-20 - 2013-10-25 zota.daniel si-a efectuat norma) 
+	
+
+Defecte:
+	- pot fi accesate de programatori si QA
+	- se pot sorta dupa severitate, versiune, ultima actualizare
+	- se pot face modificari in functie de drepturile utilizatorului
+	- se pot adauga comentarii
+	- sunt afisate comentariile in partea dreapta, atunci cand este selectat un defect din tabel
+	- se pot filtra dupa statut si rezultat
+
+Administrator - poate modifica, adauga si sterge datele angajatilor.
+Super-administrator  - poate modifica adauga si sterge datele angajatilor + datele administratorilor si ale super-administratorilor.
+Daca nu se completeaza unul dintre campuri se afiseaza eroare la adaugarea unui utilizator.
+
+Nu am implementat modulul de contabilitate.
+
+Am implementat cateva functii si triggere ajutatoare - care se gasesc in fisierul unde sunt create tabelele.
+

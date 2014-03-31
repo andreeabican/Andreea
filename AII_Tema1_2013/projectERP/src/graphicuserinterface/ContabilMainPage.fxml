@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="graphicuserinterface.ContabilMainPage">
+  <children>
+    <Circle fill="DODGERBLUE" layoutX="122.0" layoutY="200.0" mouseTransparent="false" onMouseClicked="#onPersonalBubbleAction" radius="85.0" stroke="BLACK" strokeType="INSIDE" />
+    <Text layoutX="77.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PERSONAL">
+      <font>
+        <Font size="17.0" fx:id="x1" />
+      </font>
+    </Text>
+    <Circle fill="DODGERBLUE" layoutX="473.0" layoutY="200.0" mouseTransparent="false" onMouseClicked="#onInformatiiContabilBubbleAction" radius="85.0" stroke="BLACK" strokeType="INSIDE" />
+    <Text font="$x1" layoutX="423.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INFORMATII" />
+    <Text font="$x1" layoutX="430.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CONTABIL" />
+  </children>
+</AnchorPane>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="758.0" prefWidth="1356.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="graphicuserinterface.AdministratorGUI">
+  <children>
+    <TableView fx:id="tableContent" layoutX="14.0" layoutY="49.0" onMouseClicked="#rowMouseClick" prefHeight="639.0" prefWidth="917.0">
+      <columns>
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="119.0" text="ID utilizator" fx:id="idutilizator" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="163.0" text="CNP" fx:id="cnputilizator" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="147.0" text="Nume" fx:id="numeutilizator" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="151.0" text="Prenume" fx:id="prenumeutilizator" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="139.0" text="Adresa" fx:id="adresautilizator" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="135.0" text="Telefon" fx:id="telefonutilizator" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="163.0" text="Email" fx:id="emailutilizator" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="163.0" text="IBAN" fx:id="ibanutilizator" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="163.0" text="Nr. contract" fx:id="nrcontractutilizator" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="163.0" text="Data Angajarii" fx:id="dataangajariiutilizator" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="163.0" text="Tip utilizator" fx:id="tiputilizator" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="163.0" text="Zile concediu ramase" fx:id="zileconcediuutilizator" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="163.0" text="Numar ore contract" fx:id="orecontractutilizator" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="163.0" text="Salariu negociat" fx:id="salariuutilizator" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="163.0" text="Nume utilizator" fx:id="usernameutilizator" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="163.0" text="Parola" fx:id="parolautilizator" />
+      </columns>
+    </TableView>
+    <Text layoutX="941.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nume:" />
+    <Text layoutX="940.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prenume:" />
+    <Text layoutX="940.0" layoutY="-177.0" scaleX="1.0" scaleY="0.9999999999563324" strokeType="OUTSIDE" strokeWidth="0.0" text="Angajati:" />
+    <Text layoutX="941.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CNP:" />
+    <Text layoutX="942.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefon:" />
+    <Text layoutX="941.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" />
+    <Text layoutX="942.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresa:" />
+    <Text layoutX="945.0" layoutY="369.0" scaleX="1.0" scaleY="0.9999919334021683" strokeType="OUTSIDE" strokeWidth="0.0" text="Nr. contract:" />
+    <Text layoutX="944.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data angajarii:" />
+    <Text layoutX="945.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IBAN:" />
+    <Text layoutX="946.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zile concediu de odihna:" />
+    <Text layoutX="945.0" layoutY="455.0" scaleX="1.0" scaleY="0.9999919334021683" strokeType="OUTSIDE" strokeWidth="0.0" text="Numar de ore din contract:" />
+    <Text layoutX="946.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tip utilizator:" />
+    <Text layoutX="945.0" layoutY="497.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nume utilizator:" />
+    <Text layoutX="945.0" layoutY="520.0" scaleX="1.0" scaleY="0.9999919334021683" strokeType="OUTSIDE" strokeWidth="0.0" text="Parola:" />
+    <Text layoutX="945.0" layoutY="476.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salariu negociat:" />
+    <TextField fx:id="cnp" layoutX="1127.0" layoutY="203.0" prefWidth="200.0" promptText="CNP" />
+    <TextField fx:id="nume" layoutX="1127.0" layoutY="226.0" prefWidth="200.0" promptText="nume" />
+    <TextField fx:id="prenume" layoutX="1127.0" layoutY="248.0" prefWidth="200.0" promptText="prenume" />
+    <TextField fx:id="adresa" layoutX="1126.0" layoutY="270.0" prefWidth="200.0" promptText="adresa" />
+    <TextField fx:id="telefon" layoutX="1126.0" layoutY="291.0" prefWidth="200.0" promptText="telefon" />
+    <TextField fx:id="email" layoutX="1126.0" layoutY="312.0" prefWidth="200.0" promptText="email" />
+    <TextField fx:id="iban" layoutX="1126.0" layoutY="333.0" prefWidth="200.0" promptText="IBAN" />
+    <TextField fx:id="nrcontract" layoutX="1127.0" layoutY="354.0" prefWidth="200.0" promptText="numar contract" />
+    <TextField fx:id="dataangajarii" layoutX="1127.0" layoutY="376.0" prefWidth="200.0" promptText="YYYY-MM-DD" />
+    <TextField id="tiputilizator" fx:id="tip" layoutX="1127.0" layoutY="397.0" prefWidth="200.0" promptText="angajat/administrator" />
+    <TextField fx:id="zileconcediu" layoutX="1127.0" layoutY="418.0" prefWidth="200.0" promptText="zile de concediu" />
+    <TextField fx:id="orecontract" layoutX="1127.0" layoutY="440.0" prefWidth="200.0" promptText="ore contract" />
+    <TextField fx:id="salariunegociat" layoutX="1127.0" layoutY="462.0" prefWidth="200.0" promptText="RON" />
+    <TextField id="numeutilizator" fx:id="username" layoutX="1127.0" layoutY="483.0" prefWidth="200.0" promptText="numeutilizator" />
+    <TextField fx:id="parola" layoutX="1127.0" layoutY="504.0" prefWidth="200.0" promptText="parola" />
+    <Button layoutX="1192.0" layoutY="552.0" mnemonicParsing="false" onMouseClicked="#adaugaMouseClick" text="Adauga utilizator" />
+    <Button layoutX="1192.0" layoutY="585.0" mnemonicParsing="false" onMouseClicked="#modificaMouseClick" prefWidth="134.0" text="Modifica date" />
+    <Button layoutX="1192.0" layoutY="617.0" mnemonicParsing="false" onMouseClicked="#stergeMouseClick" prefWidth="134.0" text="Sterge" />
+    <Label fx:id="eroareAdauga" layoutX="945.0" layoutY="645.0" prefWidth="382.0" text="" />
+  </children>
+</AnchorPane>

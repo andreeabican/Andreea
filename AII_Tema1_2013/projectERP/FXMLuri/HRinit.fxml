@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="758.0" prefWidth="1356.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="graphicuserinterface.HRManagementGUI">
+  <children>
+    <TableView fx:id="tableContent" layoutX="14.0" layoutY="49.0" onMouseClicked="#rowMouseClick" prefHeight="602.0" prefWidth="855.0">
+      <columns>
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="119.0" text="ID utilizator" fx:id="idutilizator" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="147.0" text="Nume" fx:id="nume" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="151.0" text="Prenume" fx:id="prenume" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="139.0" text="Data angajarii" fx:id="dataangajarii" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="135.0" text="ID departament" fx:id="iddepartament" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="163.0" text="Departament" fx:id="departament" />
+      </columns>
+    </TableView>
+    <Text layoutX="926.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nume" />
+    <Text layoutX="926.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prenume" />
+    <Text layoutX="926.0" layoutY="225.0" scaleX="1.0" scaleY="0.9999919334021683" strokeType="OUTSIDE" strokeWidth="0.0" text="Departament" />
+    <TextField fx:id="campNume" layoutX="1025.0" layoutY="151.0" prefWidth="200.0" promptText="nume" />
+    <TextField fx:id="campPrenume" layoutX="1025.0" layoutY="179.0" prefWidth="200.0" promptText="prenume" />
+    <TextField fx:id="campDepartament" layoutX="1025.0" layoutY="208.0" prefWidth="200.0" promptText="departament" />
+    <Text layoutX="926.0" layoutY="117.0" scaleX="1.0" scaleY="0.9999919334021683" strokeType="OUTSIDE" strokeWidth="0.0" text="Cauta dupa:" />
+    <Button layoutX="1159.0" layoutY="268.0" mnemonicParsing="false" onAction="#handleButtonCautareAction" text="Cauta" />
+  </children>
+</AnchorPane>

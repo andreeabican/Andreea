@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="758.0" prefWidth="1356.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="graphicuserinterface.HRManagementGUI">
+  <children>
+    <TableView fx:id="tableContent" layoutX="11.0" layoutY="27.0" onMouseClicked="#rowMouseClick" prefHeight="297.0" prefWidth="855.0">
+      <columns>
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="119.0" text="ID utilizator" fx:id="idutilizator" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="147.0" text="Nume" fx:id="nume" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="151.0" text="Prenume" fx:id="prenume" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="139.0" text="Data angajarii" fx:id="dataangajarii" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="135.0" text="ID departament" fx:id="iddepartament" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="163.0" text="Departament" fx:id="departament" />
+      </columns>
+    </TableView>
+    <TableView id="tableContent" fx:id="tableActivity" layoutX="97.0" layoutY="336.0" prefHeight="359.0" prefWidth="689.0">
+      <columns>
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="119.0" text="Ora sosire" fx:id="orasosire" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="147.0" text="Ora plecare" fx:id="oraplecare" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="151.0" text="Intarziere" fx:id="intarziere" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="139.0" text="Dupa program" fx:id="dupaprogram" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="135.0" text="Ore suplimentare" fx:id="oresuplimentare" />
+      </columns>
+    </TableView>
+    <Text layoutX="826.0" layoutY="582.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data start:" />
+    <Text layoutX="826.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data sfarsit:" />
+    <TextField fx:id="campDataStart" layoutX="924.0" layoutY="569.0" prefWidth="180.0" promptText="YYYY-MM-DD" />
+    <TextField fx:id="campDataSfarsit" layoutX="924.0" layoutY="594.0" prefWidth="180.0" promptText="YYYY-MM-DD" />
+    <Text layoutX="826.0" layoutY="541.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vizualizeaza activitatea dupa data:" />
+    <Text fill="#006610" layoutX="796.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zile de concediu de odihna ramase:">
+      <font>
+        <Font size="15.0" fx:id="x1" />
+      </font>
+    </Text>
+    <Text font="$x1" layoutX="796.0" layoutY="438.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Concediu medical(ultimele 12 luni):">
+      <fill>
+        <Color blue="0.000" green="0.000" red="0.800" fx:id="x2" />
+      </fill>
+    </Text>
+    <Text fill="$x2" font="$x1" layoutX="796.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Concediu fara plata sau din motive speciale(anul curent):" />
+    <Label fx:id="concediuOdihna" layoutX="1086.0" layoutY="392.0" prefWidth="49.0" text="" />
+    <Label id="cocnediuMedical" fx:id="concediuMedical" layoutX="1086.0" layoutY="426.0" prefWidth="49.0" text="" />
+    <Label id="cocnediuFaraPlata" fx:id="concediuFaraPlata" layoutX="1245.0" layoutY="455.0" prefWidth="49.0" text="" />
+    <Button id="showActivityButton" layoutX="1135.0" layoutY="596.0" mnemonicParsing="false" onAction="#handleButtonShowActivityAction" text="Afiseaza activitate" />
+    <Label fx:id="activityError" layoutX="98.0" layoutY="695.0" prefWidth="656.0" text="" textFill="RED" />
+    <Label fx:id="searchActivityError" layoutX="826.0" layoutY="643.0" prefWidth="345.0" text="" textFill="$x2" />
+    <Label id="totalOreLucru" fx:id="totalOre" layoutX="1134.0" layoutY="138.0" prefWidth="56.0" text="">
+      <font>
+        <Font size="17.0" fx:id="x3" />
+      </font>
+    </Label>
+    <Text font="$x3" layoutX="912.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total ore de lucru:" />
+    <Text font="$x3" layoutX="912.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total ore suplimentare:" />
+    <Label id="totalOreLucru" fx:id="totalOreSuplimentare" font="$x3" layoutX="1134.0" layoutY="164.0" prefWidth="56.0" text="" />
+    <Button layoutX="12.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleIntoarcereMenuAction" text="Mergi la pagina anterioara" />
+  </children>
+</AnchorPane>
