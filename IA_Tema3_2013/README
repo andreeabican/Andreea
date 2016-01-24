@@ -1,0 +1,41 @@
+Badoiu Simona Andreea 341C4
+
+Pentru implementarea acestei teme am scris o interfata GridCell care este imple-
+mentata de toate celelalte tipuri de celule ale terenului care trebuie sa fie 
+parcurs.
+
+Harta este citita din fisier.
+
+Pentru a explora cat mai mult din harta, robotul face urmatorii pasi:
+	- cauta o locatie libera adiacenta nevizitata catre care poate sa merga. 
+	Ordinea in care cauta locul in care poate sa mearga este Nord, Sud, Est, Vest.
+	- merge in prima locatie libera pe care o gaseste;
+	- fiecare celula parcursa este adaugata in currentPath. Acesta este repre-
+	zentat cu ajutorul unei liste inlantuite si va fi folosit atunci cand robotul
+	nu mai gaseste niciun loc in care sa mearga si se va intoarce pe drumul pe 
+	care a venit pentru a explora alte portiuni ale hartii.
+	- asa ca atunci cand robotul ajunge la o celula in care se simte miros de 
+	mlastina, se va intoarce pe ultima casuta ramasa pentru ca toate celelalte 
+	celule care il inconjoara sunt nesigure. Aceste celule nesigure sunt setate
+	pe harta noua ca celule nesigure in caz ca nu au fost deja vizitate si stim
+	ce fel de celule sunt.
+	- daca este o celula in care se simte miros de mlastina iar trei celule care
+	incojoara pozitia curenta sunt deja cunoscute ca celule sigure, atunci cea 
+	de-a patra locatie este cu siguranta mlastina si va fi setata in acest fel
+	in harta robotului.
+	- daca se ajunge la un perete acesta este setat ca perete in harta robotului
+	si se trece mai departe pornind de la ultima casuta explorata inainte de perete.
+	- am o alta lista inlantuita in care retin tot drumul parcurs de robot, iar 
+	la sfarsit robotul se intoarce pe drumul pe care l-a parcurs pentru a verifica
+	din nou vecinii tuturor celulelor in care se simte miros si a aduna cateva
+	informatii despre locurile in care sigur se afla mlastina.
+La final se afiseaza harta finala.
+
+Codurile reprezentate pe harta:
+w - wall;
+s - swamp;
+S - secure;
+U - unsecure;
+D - dummy cell - reprezinta o celula care nu a fost explorata. Acest tip de celule
+este folosit la initializarea hartii.
+	

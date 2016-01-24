@@ -1,0 +1,40 @@
+Badoiu Simona Andreea 341C4
+
+Tema1 IA - Portale
+
+Pentru rezolvarea acestei teme am scris mai multe functii micute. Fiecare functie
+are o scurta descriere chiar inainte de implementare.
+
+Pentru decizie, atat timp cat nu am strans energie suficienta:
+	- am calculat semnalul primit de la fiecare sursa de energie;
+	- in calcularea scorului unei locatii a contat foarte mult si de cate ori a
+	fost vizitata aceasta locatie. Astfel, scorul a fost calculat:
+		- SemnalEnergie - NrVizite*ValoareaSemnaluluiMaxEnergie.
+	- dupa ce un nod a fost vizitat, este reintrodus la sfarsit in lista de
+	adiacenta. Astfel, daca avem mai multe noduri cu acelasi scor, se va vizita
+	primul gasit in lista(reintroducand locatia curenta la sfarsit - ma asigur
+	ca nu se va vizita aceeasi locatie si a 2-a oara cand se vor gasi scoruri egale)
+Folosind si valoarea semnalului receptionat si numarul de vizite, m-am asigurat
+ca locatiile care contin energie vor fi vizitate cat mai repede cu putinta(primele).
+In acelasi timp, se evita ciclurile(daca o locatie a fost vizitata de foarte multe)
+ori atunci aceasta nu va mai fi luata in considerare in viitorul apropiat.
+Se asigura vizitarea tuturor locatiilor accesibile prin listele de adiacenta(adica
+toate locatiile catre care exista portal).
+
+Am dat o valoare minima -1200. Daca nodurile vor fi vizitate de foarte multe ori, 
+iar scorurile vor ajunge la aceasta valoare minima, atunci se va afisa ca problema
+nu are solutie - ceea ce inseamna ca programul nu va rula la infinit in caz ca
+nu exista solutie - aceasta valoarea(-1200) ar putea sa fie foarte mica sau foarte mare,
+in functie de care este valoarea semnalului emis de pachetele de energie. Asa ca
+se poate seta in functie de valoarea semnalului si in functie de cate ori vrem sa se
+caute solutia inainte de a termina jocul. De exemplu, in acest caz, cand pachetul
+emite semnal 17, eu am setat -1200. As fi putut seta -100*Se, pentru a functiona pe
+caz general, indiferent cat este valoarea semnalului.
+
+Dupa ce am adunat energie suficienta, am aplicat acelasi algoritm de decizie, doar
+ca de data aceasta am luat in calcul semnalul emis de poarta in locul semnalului
+emis de pachetele de energie.
+
+Pentru a calcula numarul de vizite, am retinut o lisa cu atatea elemente cate
+coordonate avem. De fiecare data cand ajung intr-un loc, cresc numarul de vizite
+pentru acel loc.

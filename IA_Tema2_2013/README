@@ -1,0 +1,22 @@
+Badoiu Simona Andreea 341 C4
+
+Pentru implementarea acestei teme, am pornit de la lista de reguli citite din fisierul wine.txt
+
+Citirea din fisier:
+	- Am folosit 2 liste auxiliare pentru formarea unei reguli
+	- daca linia incepe cu "Regula-" atunci adaugam in prima lista "Regula-n"
+		- daca la sfarsitul liniei se gaseste "si", atunci in a doua lista adaugam un fapt format pe baza a ceea ce am citit
+		- daca linia nu se termina in si, inseamna ca s-au terminat toate conditiie, deci putem sa adaugam a doua lista la prima lista si sa resetam a doua lista la '()
+	- daca linia incepe cu atunci, adaugam la a doua lista fapta formata pe baza a ceea ce am citit
+		 - daca linia se termina cu punct, inseamna ca am terminat de citit regula si o adaugam in lista de reguli
+		 - daca linia se termian cu "si", inseamna ca mai avem de citit pentru concluzie, deci updatam a doua lista si continuam sa citim
+    - pentru atributele monovaloare si multivaloare, am citit linia si am extras atributul folosind substring
+
+Rezolvarea problemei:
+	- Memoria de lucru se construieste in continuarea faptelor primite la inceputul problemei;
+	1. extrag toate atributele pentru care trebuie sa gasesc valori si factori de incredere. Incep cu atributul primit in rezultat si caut in premisa atributele de care depinde. Dupa ce extrag toate atributele de care depinde un atribut, elimin din lista duplicatele(pentru ca se identifica acelasi atribut de mai multe ori) si adauga aceasta lista la lista initiala de atribute - e putin mai altfel dar nu stiu sa explic( functiile indentifica-complet si identificare)
+	
+	2. incepand de la atributele extrase la pasul 1 - acestea sunt adaugate in ordine inversa in lista deci incepem de la ultimum atribut identificat - incercam sa gasim reguli care se aplica pentru faptelele existente in baza de fapte. Cand gasesc o regula care se aplica, extrag faptele din premisa si le adaug intr-o noua lista. Am o lista in care retin si factorii de incredere. Dupa ce o regula a facut match, adauga intr-o alta lista, atributul cautat cu CF ul si valoarea calculate dupa regulile R1 si R2. Dupa ce am aplicat acest algoritm pe toate faptele(deci am verificat tot ce putea sa dea match), parcurg lista de fapte noi si combin toate atributele cu aceeasi valoare - dupa regula R3. 
+	Inainte de adauga lista de fapte noi la lista generala de fapte, pentru atributele monovaloarea pastrez doar o valoarea, cea cu CF maxim, iar pentru cele multivaloare se pastreaza tot ce avem.
+
+	3. cand am terminat de efectuat pasul 2 pentru toate atributele din lista de atribute, ar trebui sa avem o solutie. Caut atributul cautat in rezultat si afisez toate valorile obtinute pentru acesta.
